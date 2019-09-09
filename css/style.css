@@ -1,16 +1,10 @@
-* {
-    margin: 0;
-}
-
-div {
-    margin-top: 30px;
-    line-height: 10vh;
+h1 {
     text-align: center;
-    font-size: 50px;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 40px;
 }
 
-span {
-    font-weight: bold;
+p {
+    text-align: center;
     font-family: monospace;
+    font-size: 22px;
 }
