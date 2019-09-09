@@ -1,19 +1,35 @@
-const endTime = new Date('2019-11-05 20:00:00').getTime()
-const spanD = document.querySelector('span.d')
-const spanH = document.querySelector('span.h')
-const spanM = document.querySelector('span.m')
-const spanS = document.querySelector('span.s')
+const btnMain = document.querySelector(".main");
+const btnReset = document.querySelector(".reset");
+const panel = document.querySelector(".time div");
+
+let time = 0;
+let active = false
+let idI
+
+const timer = () => {
+    if (!active) {
+        active = !active
+        btnMain.textContent = 'Pauza'
+        idI = setInterval(start, 10);
+    } else {
+        active = !active
+        btnMain.textContent = 'Start'
+        clearInterval(idI)
+
+    }
+}
+ const start = () => {
+     time++
+     panel.textContent = (time/100).toFixed(2)
+ }
+const reset = () => {
+    time = 0
+    panel.textContent = '---'
+    active = false
+    btnMain.textContent = 'Start'
+    clearInterval(idI)
+}
 
 
-setInterval(() => {
-    const nowTime = new Date().getTime()
-    const time = Math.floor((endTime - nowTime)/1000)
-    const days = Math.floor((endTime / (1000 * 60 * 60 * 24)) - (nowTime / (1000 * 60 * 60 * 24)))
-    const hours = Math.floor((endTime / (1000 * 60 * 60) - nowTime / (1000 * 60 * 60)) % 24)
-    const minutes = Math.floor((endTime / (1000 * 60) - nowTime / (1000 * 60)) % 60)
-    const seconds = Math.floor((endTime / 1000  - nowTime / 1000) % 60)
-    spanD.textContent = days
-    spanH.textContent = hours
-    spanM.textContent = minutes
-    spanS.textContent = seconds
-}, 1000);
+btnMain.addEventListener("click", timer);
+btnReset.addEventListener("click", reset);
